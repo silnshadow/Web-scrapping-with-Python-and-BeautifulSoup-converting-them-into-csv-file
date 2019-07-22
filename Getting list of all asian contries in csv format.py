@@ -1,59 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[8]:
-
-
-pwd
-
-
-# In[9]:
-
-
+#create a new directory 
 mkdir Web_Scrapping
-
-
-# In[10]:
-
-
 cd Web_Scrapping
-
-
-# In[11]:
-
-
-pip install virtualenv
-
-
-# In[14]:
-
-
-virtualenv --version
-
-
-# In[15]:
-
-
-conda - v
-
-
-# In[16]:
-
-
-pwd
-
-
-#  how to scrape data in Python using BeautifulSoup.
-
-# In[17]:
-
-
-import requests
-
-
-# In[27]:
-
-
+#import library requests 
 import requests
 
 website_url =requests.get("https://en.wikipedia.org/wiki/List of Asian countries by area").text
@@ -65,24 +13,20 @@ from bs4 import BeautifulSoup
 soup = BeautifulSoup(website_url,'lxml')
 print(soup.prettify())
 
-
-# In[28]:
-
-
 #sara data table ke class wikitable sortable me h 
+
 My_table = soup.find("table",{"class":"wikitable sortable"})
 My_table
 
 
-# In[29]:
+# To find all links in My_table 
 
 
 links=My_table.findAll("a")
 links
 
 
-# In[30]:
-
+# Save all data in List name countries
 
 Countries=[]
 for link in links :
@@ -91,25 +35,19 @@ for link in links :
 print(Countries)
 
 
-# In[34]:
-
-
 #converting list in dataframe 
+
 import pandas as pd
 df=pd.DataFrame()
 df['Country']=Countries
 df
 
 
-# In[36]:
+# Converting pandas datadrame into csv file and exporting it .
 
 
 df.to_csv("countriesss.csv")
 df
-
-
-# In[ ]:
-
 
 
 
